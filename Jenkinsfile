@@ -1,7 +1,11 @@
 pipeline{
-  agent any
-  
-  stages {
+    agent any
+    stages {
+        stage("Workspace PreClean") {
+            steps{
+                cleanWs()
+            }
+        }
         stage("Build"){
             steps{
                 sh(script: "mvn compile")
@@ -14,7 +18,7 @@ pipeline{
                         sh(script: "mvn clean test")
                     }
                 }
-                stage("Regression Chrome"){
+                stage("Regression Firefox"){
                     steps{
                         sh(script: "mvn clean test")
                     }
