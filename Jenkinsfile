@@ -1,11 +1,6 @@
 pipeline{
     agent any
     stages {
-        stage("Workspace PreClean") {
-            steps{
-                cleanWs()
-            }
-        }
         stage("Build"){
             steps{
                 sh(script: "mvn compile")
