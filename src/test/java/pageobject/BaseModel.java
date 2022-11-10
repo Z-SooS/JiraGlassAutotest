@@ -5,6 +5,7 @@ import org.openqa.selenium.NotFoundException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import utility.PropertyReader;
 import utility.WebDriverFactory;
 
@@ -28,6 +29,7 @@ public class BaseModel {
 
     public BaseModel() throws MalformedURLException {
         webDriver = WebDriverFactory.getInstance().getWebDriver();
+        PageFactory.initElements(webDriver,this);
     }
 
     public void quitSession() {
