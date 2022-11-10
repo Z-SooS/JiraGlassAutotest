@@ -18,7 +18,7 @@ public class PropertyReader {
     }
 
     private static void readProperties() {
-        try (InputStream input = Files.newInputStream(Paths.get("config.properties"))) {
+        try (InputStream input = Files.newInputStream(Paths.get("properties/config.properties"))) {
             Properties prop = new Properties();
             prop.load(input);
 
