@@ -1,18 +1,17 @@
 package pageobject;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.NotFoundException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import utility.PropertyReader;
 import utility.WebDriverFactory;
 
 import java.net.MalformedURLException;
 import java.time.Duration;
-import java.util.List;
 
 public class BaseModel {
     @FindBy(id = "login-form-username")
@@ -24,8 +23,7 @@ public class BaseModel {
     @FindBy(id = "login-form-submit")
     private WebElement loginSubmitButton;
 
-    @FindBy(xpath = "//header[@role='banner']/nav")
-    private List<WebElement> tabContainers;
+    private final By helpModalLocator = By.xpath("//div[@role='dialog']");
 
     protected WebDriver webDriver;
 
@@ -62,15 +60,18 @@ public class BaseModel {
     public void openGlassDocumentation() {
         webDriver.get(PropertyReader.getProperty("base_url") +
                 "/projects/POK?selectedItem=com.metainf.jira.plugin:glass-project-documentation#/home/general/schemes");
+        maximizeWindow();
+        closeHelpModal();
     }
 
     public void clickOnTab(String tabName) {
-        for (WebElement navbar : tabContainers) {
-            try {
-                navbar.findElement(By.xpath(String.format("//span[text() = '%s'",tabName)));
-                break;
-            } catch (NotFoundException ignored) {}
-        }
-        throw new NotFoundException("No such element exists in tabs: " + tabName);
+        longWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(String.format("//header[@role='banner']/nav//span[text() = '%s']",tabName))));
+        webDriver.findElement(By.xpath(String.format("//header[@role='banner']/nav//span[text() = '%s']",tabName))).click();
+    }
+
+    public void closeHelpModal() {
+        longWait.until(ExpectedConditions.visibilityOfElementLocated(helpModalLocator));
+        webDriver.findElement(helpModalLocator).findElement(By.xpath("//button/span[text() = 'Skip']")).click();
+        longWait.until(ExpectedConditions.invisibilityOfElementLocated(helpModalLocator));
     }
 }
