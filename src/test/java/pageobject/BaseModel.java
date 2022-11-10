@@ -6,10 +6,12 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import utility.PropertyReader;
 import utility.WebDriverFactory;
 
 import java.net.MalformedURLException;
+import java.time.Duration;
 import java.util.List;
 
 public class BaseModel {
@@ -27,9 +29,14 @@ public class BaseModel {
 
     protected WebDriver webDriver;
 
+    protected WebDriverWait shortWait;
+    protected WebDriverWait longWait;
+
     public BaseModel() throws MalformedURLException {
         webDriver = WebDriverFactory.getInstance().getWebDriver();
         PageFactory.initElements(webDriver,this);
+        shortWait = new WebDriverWait(webDriver, Duration.ofSeconds(Integer.parseInt(PropertyReader.getProperty("short_wait"))));
+        longWait = new WebDriverWait(webDriver, Duration.ofSeconds(Integer.parseInt(PropertyReader.getProperty("long_wait"))));
     }
 
     public void quitSession() {
