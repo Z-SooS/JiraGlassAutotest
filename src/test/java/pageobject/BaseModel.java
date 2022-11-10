@@ -1,18 +1,16 @@
 package pageobject;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.NotFoundException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import utility.PropertyReader;
 import utility.WebDriverFactory;
 
 import java.net.MalformedURLException;
 import java.time.Duration;
-import java.util.List;
 
 public class BaseModel {
     @FindBy(id = "login-form-username")
@@ -24,8 +22,7 @@ public class BaseModel {
     @FindBy(id = "login-form-submit")
     private WebElement loginSubmitButton;
 
-    @FindBy(xpath = "//header[@role='banner']/nav")
-    private List<WebElement> tabContainers;
+    private final By helpModalLocator = By.xpath("//div[@role='dialog']");
 
     protected WebDriver webDriver;
 
@@ -62,6 +59,8 @@ public class BaseModel {
     public void openGlassDocumentation() {
         webDriver.get(PropertyReader.getProperty("base_url") +
                 "/projects/POK?selectedItem=com.metainf.jira.plugin:glass-project-documentation#/home/general/schemes");
+        maximizeWindow();
+        closeHelpModal();
     }
 
     public void clickOnTab(String tabName) {
