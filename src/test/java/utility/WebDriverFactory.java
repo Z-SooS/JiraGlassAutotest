@@ -2,6 +2,8 @@ package utility;
 
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
@@ -28,18 +30,26 @@ public class WebDriverFactory {
     }
 
     private WebDriver createWebDriver() throws MalformedURLException {
+        final String TESTLOCATION = PropertyReader.getProperty("selenium_location");
         final String BROWSER =PropertyReader.getProperty("browser");
-        final String PASSWORD = System.getProperty("password");
-
-        DesiredCapabilities capability = new DesiredCapabilities();
-        if ("firefox".equals(BROWSER)) {
-            capability.setBrowserName("firefox");
+        if (TESTLOCATION != null) {
+            final String PASSWORD = PropertyReader.getProperty("password");
+            DesiredCapabilities capability = new DesiredCapabilities();
+            if ("firefox".equals(BROWSER)) {
+                capability.setBrowserName("firefox");
+            } else {
+                capability.setBrowserName("chrome");
+            }
+            capability.setPlatform(Platform.LINUX);
+            webDriver = new RemoteWebDriver(
+                    new URL("https://selenium:" + PASSWORD + "@" + PropertyReader.getProperty("selenium_location") + "/wd/hub"), capability);
         } else {
-            capability.setBrowserName("chrome");
+            if (BROWSER.equals("firefox")) {
+                webDriver = new FirefoxDriver();
+            } else  {
+                webDriver = new ChromeDriver();
+            }
         }
-        capability.setPlatform(Platform.LINUX);
-        webDriver = new RemoteWebDriver(
-                new URL("https://selenium:" + PASSWORD + "@seleniumhub.codecool.metastage.net/wd/hub"), capability);
 
         return webDriver;
     }
