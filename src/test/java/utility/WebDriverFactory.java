@@ -28,7 +28,7 @@ public class WebDriverFactory {
     }
 
     private WebDriver createWebDriver() throws MalformedURLException {
-        final String BROWSER =PropertyReader.getProperty("browser");
+        final String BROWSER = PropertyReader.getProperty("browser");
         final String PASSWORD = System.getProperty("password");
 
         DesiredCapabilities capability = new DesiredCapabilities();
