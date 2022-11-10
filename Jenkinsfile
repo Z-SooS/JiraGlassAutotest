@@ -1,7 +1,11 @@
 pipeline{
-  agent any
-  
-  stages {
+    agent any
+    stages {
+        stage("Workspace PreClean") {
+            steps{
+                cleanWs()
+            }
+        }
         stage("Build"){
             steps{
                 sh(script: "mvn compile")
@@ -11,26 +15,30 @@ pipeline{
             parallel{
                 stage("Regression Chrome"){
                     steps{
-                        sh(script: "mvn clean test")
+                        sh(script: "mvn clean test -Dselenium_location='$SELENIUM_LOCATION' -Dselenium_username='$SELENIUM_USERNAME'
+                        -Dselenium_password='$SELENIUM_PASSWORD' -Dbase_url='$JIRA_BASE_URL' -Dusername='$JIRA_USERNAME' -Dpassword='$JIRA_PASSWORD'
+                        -Dshort_wait=$SHORT_WAIT -Dlong_wait=$LONG_WAIT -Dbrowser=chrome")
                     }
                 }
                 stage("Regression Chrome"){
                     steps{
-                        sh(script: "mvn clean test")
+                        steps{
+                            sh(script: "mvn clean test -Dselenium_location='$SELENIUM_LOCATION' -Dselenium_username='$SELENIUM_USERNAME'
+                            -Dselenium_password='$SELENIUM_PASSWORD' -Dbase_url='$BASE_URL' -Dusername='$USERNAME' -Dpassword='$PASSWORD'
+                            -Dshort_wait=$SHORT_WAIT -Dlong_wait=$LONG_WAIT -Dbrowser=firefox")
                     }
                 }
             }
-        }
-        stage("New featire testing"){
+        stage("New feature testing"){
             parallel{
                 stage("With Chrome"){
                     steps{
-                        sh(script: "mvn clean test -Dbrowsertype=chrome")
+                        echo "Not yet implemented"
                     }
                 }
                 stage("With Firefox"){
                     steps{
-                        sh(script: "mvn clean test -Dbrowsertype=firefox")
+                        echo "Not yet implemented"
                     }
                 }
             }
