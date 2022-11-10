@@ -10,12 +10,12 @@ pipeline{
             parallel{
                 stage("Regression Chrome"){
                     steps{
-                        sh(script: "mvn clean test -Dselenium_location='$SELENIUM_LOCATION' -Dselenium_username='$SELENIUM_USERNAME' -Dselenium_password='$SELENIUM_PASSWORD' -Dbase_url='$JIRA_BASE_URL' -Dusername='$JIRA_USERNAME' -Dpassword='$JIRA_PASSWORD' -Dshort_wait=$SHORT_WAIT -Dlong_wait=$LONG_WAIT -Dbrowser=chrome")
+                        sh(script: "mvn clean test '-Dcucumber.filter.tags="@Regression"' -Dselenium_location='$SELENIUM_LOCATION' -Dselenium_username='$SELENIUM_USERNAME' -Dselenium_password='$SELENIUM_PASSWORD' -Dbase_url='$JIRA_BASE_URL' -Dusername='$JIRA_USERNAME' -Dpassword='$JIRA_PASSWORD' -Dshort_wait=$SHORT_WAIT -Dlong_wait=$LONG_WAIT -Dbrowser=chrome")
                     }
                 }
                 stage("Regression Firefox"){
                     steps{
-                        sh(script: "mvn clean test -Dselenium_location='$SELENIUM_LOCATION' -Dselenium_username='$SELENIUM_USERNAME' -Dselenium_password='$SELENIUM_PASSWORD' -Dbase_url='$BASE_URL' -Dusername='$USERNAME' -Dpassword='$PASSWORD' -Dshort_wait=$SHORT_WAIT -Dlong_wait=$LONG_WAIT -Dbrowser=firefox")
+                        sh(script: "mvn clean test '-Dcucumber.filter.tags="@Regression"' -Dselenium_location='$SELENIUM_LOCATION' -Dselenium_username='$SELENIUM_USERNAME' -Dselenium_password='$SELENIUM_PASSWORD' -Dbase_url='$BASE_URL' -Dusername='$USERNAME' -Dpassword='$PASSWORD' -Dshort_wait=$SHORT_WAIT -Dlong_wait=$LONG_WAIT -Dbrowser=firefox")
                     }
                 }
             }
