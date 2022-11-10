@@ -18,13 +18,14 @@ pipeline{
                         sh(script: "mvn clean test -Dselenium_location='$SELENIUM_LOCATION' -Dselenium_username='$SELENIUM_USERNAME' -Dselenium_password='$SELENIUM_PASSWORD' -Dbase_url='$JIRA_BASE_URL' -Dusername='$JIRA_USERNAME' -Dpassword='$JIRA_PASSWORD' -Dshort_wait=$SHORT_WAIT -Dlong_wait=$LONG_WAIT -Dbrowser=chrome")
                     }
                 }
-                stage("Regression Chrome"){
+                stage("Regression Firefox"){
                     steps{
                         steps{
                             sh(script: "mvn clean test -Dselenium_location='$SELENIUM_LOCATION' -Dselenium_username='$SELENIUM_USERNAME' -Dselenium_password='$SELENIUM_PASSWORD' -Dbase_url='$BASE_URL' -Dusername='$USERNAME' -Dpassword='$PASSWORD' -Dshort_wait=$SHORT_WAIT -Dlong_wait=$LONG_WAIT -Dbrowser=firefox")
                     }
                 }
             }
+        }
         stage("New feature testing"){
             parallel{
                 stage("With Chrome"){

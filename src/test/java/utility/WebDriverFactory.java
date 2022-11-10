@@ -2,6 +2,8 @@ package utility;
 
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
@@ -28,18 +30,27 @@ public class WebDriverFactory {
     }
 
     private WebDriver createWebDriver() throws MalformedURLException {
-        final String BROWSER = PropertyReader.getProperty("browser");
-        final String PASSWORD = System.getProperty("password");
-
-        DesiredCapabilities capability = new DesiredCapabilities();
-        if ("firefox".equals(BROWSER)) {
-            capability.setBrowserName("firefox");
+        final String TESTLOCATION = PropertyReader.getProperty("selenium_location");
+        final String BROWSER =PropertyReader.getProperty("browser");
+        if (TESTLOCATION != null) {
+            final String SELENIUM_PASSWORD = PropertyReader.getProperty("selenium_password");
+            final String SELENIUM_USERNAME = PropertyReader.getProperty("selenium_username");
+            DesiredCapabilities capability = new DesiredCapabilities();
+            if ("firefox".equals(BROWSER)) {
+                capability.setBrowserName("firefox");
+            } else {
+                capability.setBrowserName("chrome");
+            }
+            capability.setPlatform(Platform.LINUX);
+            webDriver = new RemoteWebDriver(
+                    new URL("https://" + SELENIUM_USERNAME + ":" + SELENIUM_PASSWORD + "@" +TESTLOCATION + "/wd/hub"), capability);
         } else {
-            capability.setBrowserName("chrome");
+            if (BROWSER.equals("firefox")) {
+                webDriver = new FirefoxDriver();
+            } else  {
+                webDriver = new ChromeDriver();
+            }
         }
-        capability.setPlatform(Platform.LINUX);
-        webDriver = new RemoteWebDriver(
-                new URL("https://selenium:" + PASSWORD + "@seleniumhub.codecool.metastage.net/wd/hub"), capability);
 
         return webDriver;
     }
