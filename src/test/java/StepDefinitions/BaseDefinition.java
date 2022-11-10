@@ -1,49 +1,38 @@
 package StepDefinitions;
 
+import io.cucumber.java.After;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
-import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.junit.jupiter.api.Assertions;
-import pageobject.PermissionsTabModel;
+import pageobject.BaseModel;
 
 import java.net.MalformedURLException;
 
-public class StepDefinition {
-    private final PermissionsTabModel permissionsTabModel = new PermissionsTabModel();
+public class BaseDefinition {
+    private final BaseModel baseModel = new BaseModel();
 
-    public StepDefinition() throws MalformedURLException {
+    public BaseDefinition() throws MalformedURLException {
     }
 
     @Given("i am logged in")
     public void iAmLoggedIn() {
-        permissionsTabModel.doLogin();
+        baseModel.doLogin();
     }
 
     @And("i am on glass page")
     public void iAmOnGlassPage() {
-        permissionsTabModel.openGlassDocumentation();
+        baseModel.openGlassDocumentation();
     }
 
     @When("i click on {string} tab")
     public void iClickOnTab(String tabName) {
-        permissionsTabModel.clickOnTab(tabName);
+        baseModel.clickOnTab(tabName);
     }
 
-    @Then("under Any logged in user i will find {string}")
-    public void underAnyLoggedInUserIWillFind(String permissionName) {
-        Assertions.assertTrue(permissionsTabModel.isAnyUserPermissionPresent(permissionName));
+    @After
+    public void teardown() {
+        baseModel.quitSession();
     }
-
-    @Then("under Any logged in user i will not find {string}")
-    public void underAnyLoggedInUserIWillNotFind(String permissionName) {
-        Assertions.assertFalse(permissionsTabModel.isAnyUserPermissionPresent(permissionName));
-    }
-
-
-
-
-
 
 
 //
