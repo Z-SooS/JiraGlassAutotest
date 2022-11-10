@@ -1,3 +1,4 @@
+@Regression
 Feature: Glass general info display
   Scenario: Check preset values are displayer correctly
     Given i am logged in

@@ -1,3 +1,4 @@
+@Regression
 Feature: Issue Type display
   Scenario: All preset issue types are available
     Given i am logged in

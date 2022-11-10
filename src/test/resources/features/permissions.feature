@@ -1,3 +1,4 @@
+@Regression
 Feature: Glass permissions viewer
 
   Scenario: Preset permissions are displayed correctly

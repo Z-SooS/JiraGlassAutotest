@@ -1,3 +1,4 @@
+@Regression
 Feature: Glass people page display
   Scenario: Display preset users correctly
     Given i am logged in
