@@ -3,18 +3,30 @@ package StepDefinitions;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import pageobject.BaseModel;
+
+import java.net.MalformedURLException;
 
 public class VersionWithGlass {
+
+    BaseModel baseModel = new BaseModel();
+
+    public VersionWithGlass() throws MalformedURLException {
+    }
+
     @Given("i am logged in")
     public void iAmLoggedIn() {
+        baseModel.doLogin();
     }
 
     @Given("i am on glass page")
     public void iAmOnGlassPage() {
+        baseModel.openPath("/projects/POK?selectedItem=com.metainf.jira.plugin:glass-project-documentation#/home/general/versions");
     }
 
     @When("open the provided url for {string}")
-    public void openTheProvidedUrlFor(String arg0) {
+    public void openTheProvidedUrlFor(String path) {
+        baseModel.openPath(path);
     }
 
     @When("click on visible issue with provided name {string}")
