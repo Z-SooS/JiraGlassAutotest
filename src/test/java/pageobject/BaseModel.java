@@ -1,9 +1,10 @@
 package pageobject;
 
-import org.openqa.selenium.*;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import utility.PropertyReader;
@@ -64,12 +65,13 @@ public class BaseModel {
     }
 
     public void clickOnTab(String tabName) {
-        for (WebElement navbar : tabContainers) {
-            try {
-                navbar.findElement(By.xpath(String.format("//span[text() = '%s'",tabName)));
-                break;
-            } catch (NotFoundException ignored) {}
-        }
-        throw new NotFoundException("No such element exists in tabs: " + tabName);
+        longWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(String.format("//header[@role='banner']/nav//span[text() = '%s']",tabName))));
+        webDriver.findElement(By.xpath(String.format("//header[@role='banner']/nav//span[text() = '%s']",tabName))).click();
+    }
+
+    public void closeHelpModal() {
+        longWait.until(ExpectedConditions.visibilityOfElementLocated(helpModalLocator));
+        webDriver.findElement(helpModalLocator).findElement(By.xpath("//button/span[text() = 'Skip']")).click();
+        longWait.until(ExpectedConditions.invisibilityOfElementLocated(helpModalLocator));
     }
 }
