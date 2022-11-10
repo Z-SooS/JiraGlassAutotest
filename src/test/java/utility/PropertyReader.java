@@ -2,8 +2,6 @@ package utility;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.Properties;
 
 public class PropertyReader {
@@ -18,7 +16,7 @@ public class PropertyReader {
     }
 
     private static void readProperties() {
-        try (InputStream input = Files.newInputStream(Paths.get("properties/config.properties"))) {
+        try (InputStream input = PropertyReader.class.getResourceAsStream("/config.properties")) {
             Properties prop = new Properties();
             prop.load(input);
 
