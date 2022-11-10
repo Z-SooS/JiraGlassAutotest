@@ -1,0 +1,14 @@
+{
+  "brokenTestObjects": [
+    {
+      "approved": true,
+      "testObjectId": "Object Repository/Show_Transition_Labels_Repo/Page_Edit  Software Simplified Workflow for_6e178f/tspan_Create",
+      "brokenLocator": "//tspan[(text() \u003d \u0027Create\u0027 or . \u003d \u0027Create\u0027)]",
+      "brokenLocatorMethod": "XPATH",
+      "proposedLocator": "//*[(text() \u003d \u0027Create\u0027 or . \u003d \u0027Create\u0027)]",
+      "proposedLocatorMethod": "BASIC",
+      "recoveryMethod": "BASIC",
+      "pathToScreenshot": "Reports/Self-healing/Object Repository/Show_Transition_Labels_Repo/Page_Edit  Software Simplified Workflow for_6e178f/tspan_Create_BASIC.png"
+    }
+  ]
+}
