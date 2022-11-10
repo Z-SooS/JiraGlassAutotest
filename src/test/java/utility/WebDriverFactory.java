@@ -34,6 +34,7 @@ public class WebDriverFactory {
         final String BROWSER =PropertyReader.getProperty("browser");
         if (TESTLOCATION != null) {
             final String PASSWORD = PropertyReader.getProperty("password");
+            final String SELENIUM_USERNAME = PropertyReader.getProperty("selenium_username");
             DesiredCapabilities capability = new DesiredCapabilities();
             if ("firefox".equals(BROWSER)) {
                 capability.setBrowserName("firefox");
@@ -42,7 +43,7 @@ public class WebDriverFactory {
             }
             capability.setPlatform(Platform.LINUX);
             webDriver = new RemoteWebDriver(
-                    new URL("https://selenium:" + PASSWORD + "@" + PropertyReader.getProperty("selenium_location") + "/wd/hub"), capability);
+                    new URL("https://" + SELENIUM_USERNAME + ":" + PASSWORD + "@" +TESTLOCATION + "/wd/hub"), capability);
         } else {
             if (BROWSER.equals("firefox")) {
                 webDriver = new FirefoxDriver();
