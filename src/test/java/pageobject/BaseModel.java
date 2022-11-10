@@ -65,8 +65,8 @@ public class BaseModel {
     }
 
     public void clickOnTab(String tabName) {
-        longWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(String.format("//header[@role='banner']/nav//span[text() = '%s']",tabName))));
-        webDriver.findElement(By.xpath(String.format("//header[@role='banner']/nav//span[text() = '%s']",tabName))).click();
+        longWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(String.format("//header[@role='banner']/nav//*[text() = '%s']",tabName))));
+        webDriver.findElement(By.xpath(String.format("//header[@role='banner']/nav//*[text() = '%s']",tabName))).click();
     }
 
     public void closeHelpModal() {
