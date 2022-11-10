@@ -14,8 +14,7 @@ public class PropertyReader {
         if (value != null) return value;
         if (properties == null) readProperties();
         value = properties.getProperty(propertyName);
-        if (value != null) return value;
-        throw new RuntimeException("Property " + propertyName + " not set");
+        return value;
     }
 
     private static void readProperties() {
