@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WebElementEntity>
+   <description></description>
+   <name>div_Only users with Browse Projects permiss_558315</name>
+   <tag></tag>
+   <elementGuidId>8f2839e6-1a2f-499d-9bb9-03022e9b66b1</elementGuidId>
+   <selectorCollection>
+      <entry>
+         <key>CSS</key>
+         <value></value>
+      </entry>
+      <entry>
+         <key>XPATH</key>
+         <value>//body[@id='jira']/div[2]/div[2]/div/div[3]/div[2]/div/div/div/div/div[2]/div/div/div[2]/div/div[2]</value>
+      </entry>
+   </selectorCollection>
+   <selectorMethod>XPATH</selectorMethod>
+   <useRalativeImagePath>true</useRalativeImagePath>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>tag</name>
+      <type>Main</type>
+      <value>div</value>
+      <webElementGuid>cd98d94d-613a-46a3-9698-7e9f4e8fed46</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>class</name>
+      <type>Main</type>
+      <value>condition-block</value>
+      <webElementGuid>07f8f731-55f8-4c1a-a237-dcc5655baa22</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>text</name>
+      <type>Main</type>
+      <value>Only users with Browse Projects permission can execute this transition.</value>
+      <webElementGuid>c2967828-35f9-4df8-9f93-34e0c3eeff04</webElementGuid>
+   </webElementProperties>
+   <webElementProperties>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath</name>
+      <type>Main</type>
+      <value>id(&quot;jira&quot;)/div[@class=&quot;atlaskit-portal-container&quot;]/div[@class=&quot;atlaskit-portal&quot;]/div[@class=&quot;css-12p1yy3&quot;]/div[3]/div[@class=&quot;css-79ym8r&quot;]/div[@class=&quot;css-1yfnrso&quot;]/div[@class=&quot;css-e6hn7k&quot;]/div[@class=&quot;css-6g97ak&quot;]/div[1]/div[2]/div[1]/div[@class=&quot;sc-fBuWsC vPdpw&quot;]/div[@class=&quot;sc-fMiknA kdMXvS&quot;]/div[1]/div[@class=&quot;condition-block&quot;]</value>
+      <webElementGuid>95304986-0f57-41c5-ad48-d1abe4cf8178</webElementGuid>
+   </webElementProperties>
+   <webElementXpaths>
+      <isSelected>true</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:idRelative</name>
+      <type>Main</type>
+      <value>//body[@id='jira']/div[2]/div[2]/div/div[3]/div[2]/div/div/div/div/div[2]/div/div/div[2]/div/div[2]</value>
+      <webElementGuid>c24f63af-fa2f-4116-83e4-43ce3d89fc88</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:neighbor</name>
+      <type>Main</type>
+      <value>(.//*[normalize-space(text()) and normalize-space(.)='Create Issues'])[1]/following::div[1]</value>
+      <webElementGuid>fecd7de4-129d-458b-8609-8c00b0af1c85</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:position</name>
+      <type>Main</type>
+      <value>//div/div/div[2]/div/div[2]</value>
+      <webElementGuid>03fdf8a1-f54f-4866-b242-cdaab50259b9</webElementGuid>
+   </webElementXpaths>
+   <webElementXpaths>
+      <isSelected>false</isSelected>
+      <matchCondition>equals</matchCondition>
+      <name>xpath:customAttributes</name>
+      <type>Main</type>
+      <value>//div[(text() = 'Only users with Browse Projects permission can execute this transition.' or . = 'Only users with Browse Projects permission can execute this transition.')]</value>
+      <webElementGuid>a58ba273-5db6-4e9f-804c-87cb4d41865b</webElementGuid>
+   </webElementXpaths>
+</WebElementEntity>
