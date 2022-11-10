@@ -43,4 +43,9 @@ public class BaseModel {
     public void maximizeWindow() {
         webDriver.manage().window().maximize();
     }
+
+    public void openGlassDocumentation() {
+        webDriver.get(PropertyReader.getProperty("base_url") +
+                "/projects/POK?selectedItem=com.metainf.jira.plugin:glass-project-documentation#/home/general/schemes");
+    }
 }
