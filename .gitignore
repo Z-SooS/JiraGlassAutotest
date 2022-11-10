@@ -26,3 +26,4 @@ src.iml
 target/
 
 config.properties
+/bin/
