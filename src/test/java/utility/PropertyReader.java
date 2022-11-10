@@ -2,8 +2,6 @@ package utility;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.Properties;
 
 public class PropertyReader {
@@ -14,12 +12,11 @@ public class PropertyReader {
         if (value != null) return value;
         if (properties == null) readProperties();
         value = properties.getProperty(propertyName);
-        if (value != null) return value;
-        throw new RuntimeException("Property " + propertyName + " not set");
+        return value;
     }
 
     private static void readProperties() {
-        try (InputStream input = Files.newInputStream(Paths.get("config.properties"))) {
+        try (InputStream input = PropertyReader.class.getResourceAsStream("/config.properties")) {
             Properties prop = new Properties();
             prop.load(input);
 
